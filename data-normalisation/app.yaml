@@ -1,0 +1,15 @@
+name: data-normalisation
+language: Python
+variables:
+  - name: input
+    inputType: InputTopic
+    defaultValue: raw-data
+    required: false
+  - name: output
+    inputType: OutputTopic
+    defaultValue: table-data
+    required: false
+dockerfile: dockerfile
+runEntryPoint: main.py
+defaultFile: main.py
+libraryItemId: starter-transformation
