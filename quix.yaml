@@ -1,0 +1,43 @@
+# Quix Project Descriptor
+# This file describes the data pipeline and configuration of resources of a Quix Project.
+
+metadata:
+  version: 1.0
+
+# This section describes the Deployments of the data pipeline
+deployments:
+  - name: raw-replay
+    application: raw-replay
+    version: latest
+    deploymentType: Service
+    resources:
+      cpu: 200
+      memory: 800
+      replicas: 1
+    variables:
+      - name: output
+        inputType: OutputTopic
+        required: false
+        value: raw-data
+  - name: data-normalisation
+    application: data-normalisation
+    version: latest
+    deploymentType: Service
+    resources:
+      cpu: 200
+      memory: 800
+      replicas: 1
+    variables:
+      - name: input
+        inputType: InputTopic
+        required: false
+        value: raw-data
+      - name: output
+        inputType: OutputTopic
+        required: false
+        value: table-data
+
+# This section describes the Topics of the data pipeline
+topics:
+  - name: raw-data
+  - name: table-data
